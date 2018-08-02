@@ -1,15 +1,24 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-
+import Home from '@/Home'
 Vue.use(Router)
 
+const page = name => () => import('@/pages/' + name)
+
 export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
+      path: '',
+      name: 'Home',
+      component: Home,
+      children: [
+        {
+          path: '/',
+          component: r => require.ensure([], () => r(require('@/pages/Index')), 'index')
+        },
+      ]
+    },
+    {path: '/blogTag', name: 'blogTag', component: page('blogTag')}
   ]
 })
