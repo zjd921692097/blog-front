@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <el-container>
+    <el-container >
        
     	
     	<base-header :activeIndex="activeIndex"></base-header>

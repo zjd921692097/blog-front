@@ -40,4 +40,7 @@ body{position:relative;}
 .me-pull-right {
 	float: right;
 }
+.v-note-wrapper {
+  z-index: 1!important;
+}
 </style>

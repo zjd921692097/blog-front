@@ -21,6 +21,10 @@ export default new Router({
           path: '/',
           component: r => require.ensure([], () => r(require('@/pages/Index')), 'index')
         },
+        {
+          path: '/write',
+          component: r => require.ensure([], () => r(require('@/pages/write')), 'write')
+        },
       ]
     },
     {path: '/blogTag', name: 'blogTag', component: page('blogTag')}

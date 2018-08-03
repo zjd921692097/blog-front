@@ -1,130 +1,80 @@
 <template>
-  <div v-title data-title="ForFun Find Yourself">
-    <el-container>
+  <div class="my-div">
   
-      <el-main class="me-articles">
-        <ul id="example-1">
-          <li v-for="item in items">
-  
-            <el-col :span="12">
-              <el-card shadow="hover">
-                123
+    <el-container class="index-container">
+      <el-main>
+        <ul style="list-style-type:none">
+          <li v-for="todo in tableData" class="my-li">
+            <el-col :span="20">
+              <el-card shadow="hover" class="my-card" :body-style="{ padding: '5%' }">
+                <div class="in-title">
+                  <span>{{ todo.title}}</span>
+                  <span>{{ todo.createdTime}}</span>
+                </div>
               </el-card>
-  
             </el-col>
           </li>
         </ul>
-  
-  
       </el-main>
-  
-      <el-aside>
-  
-        <card-me class="me-area"></card-me>
-        <card-tag :tags="hotTags"></card-tag>
-        <h1>cccccccccccccccccccccc</h1>
-  
+      <el-aside width="10%">
   
       </el-aside>
-  
     </el-container>
+  
   </div>
 </template>
+
 <script>
-    import $ from 'jquery'
-    export default {
-        data() {
-            return {
-               items:'',
-            };
-    
-    
+  import $ from 'jquery'
+  export default {
+    data() {
+      return {
+        items: '',
+        tableData: [],
+      };
+  
+  
+    },
+  
+    methods: { 
+     
+    },
+    created: function() {
+      var self = this;
+      $.ajax({
+        url: 'http://localhost:9090/article/getArticleByType',
+        type: 'post',
+        dataType: "text",
+        async: false,
+        xhrFields: {
+          withCredentials: true
         },
-        methods: {
-            handleSelect(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            outLogin() {
-                var self = this;
-                $.ajax({
-                    url: 'http://localhost:9090/user/outLogin',
-                    type: 'post',
-                    data: this.UserParam,
-                    dataType: "text",
-                    async: false,
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    crossDomain: true,
-                    success: function(data) {
-                        data = JSON.parse(data);
-    
-                    },
-                    error: function(data) {
-                        //TODO 失败
-                        console.log("error", data)
-                    }
-                })
-    
-    
-                console.log("1234")
-                self.centerDialogVisible = false
-                self.isLogin = true
-                return this.$message.warning('注销成功', {
-                    data: this.data
-                })
-    
-    
-    
-    
-            },
-            handleLogin() {
-                var self = this;
-                var result = 'true';
-                console.log("wode", self.UserParam.passWord);
-                if (!self.UserParam.userName || !self.UserParam.passWord) {
-                    return this.$message.warning('用户名和密码不能为空', {
-                        data: this.data
-                    })
-                }
-                $.ajax({
-                    url: 'http://localhost:9090/user/login',
-                    type: 'post',
-                    data: this.UserParam,
-                    dataType: "text",
-                    async: false,
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    crossDomain: true,
-                    success: function(data) {
-                        data = JSON.parse(data);
-                        self.account = data;
-                        console.log("abcd", this.account.success)
-                    },
-                    error: function(data) {
-                        //TODO 失败
-                        console.log("error", data)
-                    }
-                })
-    
-                if (this.account.success === true) {
-                    console.log("1234")
-                    self.centerDialogVisible = false
-                    self.isLogin = false
-                    return this.$message.warning('登陆成功', {
-                        data: this.data
-                    })
-    
-    
-                }
-                return this.$message.warning(this.account.retMsg, {
-                    data: this.data
-                })
-    
-            }
+        crossDomain: true,
+        success: function(data) {
+          data = JSON.parse(data)
+          console.log(data)
+          self.tableData = data.data
+  
+          console.log("abc", self.tableData)
+        },
+        error: function(data) {
+          //TODO 失败
+          console.log("error", data)
         }
+      })
+      for (var i = 0; i < self.tableData.length; i++) {
+        console.log(self.tableData[i].createdTime);
+        var date = new Date(self.tableData[i].createdTime); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        var Y = date.getFullYear() + '-';
+        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+        var D = date.getDate() + ' ';
+        var h = date.getHours() + ':';
+        var m = date.getMinutes() + ':';
+        var s = date.getSeconds();
+        self.tableData[i].createdTime =Y + M + D + h + m + s;
+      }
     }
+  }
 </script>
 
 <style scoped>
@@ -148,5 +98,26 @@
   
   .el-card:not(:first-child) {
     margin-top: 20px;
+  }
+  
+  .my-li {
+    margin-top: 5%;
+    height: 30%;
+  }
+  
+  .my-card {
+    margin-top: 0.5%;
+  }
+  
+  .index-container {
+    width: 80%;
+  }
+  
+  .my-div {
+    width: 80%;
+  }
+  
+  .in-title {
+    font-size: 180%;
   }
 </style>
