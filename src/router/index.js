@@ -14,6 +14,10 @@ export default new Router({
       component: Home,
       children: [
         {
+          path: '/read',
+          component: r => require.ensure([], () => r(require('@/pages/read')), 'read')
+        },
+        {
           path: '/',
           component: r => require.ensure([], () => r(require('@/pages/Index')), 'index')
         },

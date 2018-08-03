@@ -1,7 +1,7 @@
 <template>
   <el-footer class="me-area">
     <div class="me-footer">
-      <p>Designed by
+      <p> shouji18072834696@outlooks.com
         <strong>
           <router-link to="/" class="me-login-design-color">xiaodi</router-link>
         </strong>

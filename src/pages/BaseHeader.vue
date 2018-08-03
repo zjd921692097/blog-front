@@ -8,9 +8,9 @@
                 </router-link>
             </el-col>
             <el-col :span="16">
-                <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                    <el-menu-item index="1">我的文章</el-menu-item>
-                    <el-menu-item index="2">我的阅读</el-menu-item>
+                <el-menu :default-active="activeIndex" menu-trigger="click" router=true class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                    <el-menu-item index="/">我的文章</el-menu-item>
+                    <el-menu-item index="/read">我的阅读</el-menu-item>
                     <el-menu-item index="3">标签</el-menu-item>
                     <el-menu-item index="4">日记</el-menu-item>
                     <el-col :span="8" :offset="8">
@@ -22,8 +22,8 @@
                 <el-menu :router=true menu-trigger="click" mode="horizontal" active-text-color="#5FB878">
                     <el-menu-item v-if="isLogin">
                         <el-button type="text" @click="centerDialogVisible = true">登录</el-button>
-                        <el-dialog title="登陆" :visible.sync="centerDialogVisible" width="21%"  center :modal="false">
-                            <el-form :model="form">
+                        <el-dialog title="登陆" :visible.sync="centerDialogVisible" width="21%" center :modal="false">
+                            <el-form>
                                 <el-form-item label="账号" :label-width="formLabelWidth">
                                     <el-col :span="18">
                                         <el-input v-model="UserParam.userName" auto-complete="on" disabled="disabled"></el-input>
@@ -36,10 +36,13 @@
                                 </el-form-item>
                             </el-form>
                             <span slot="footer" class="dialog-footer">
-                                              <el-button @click="centerDialogVisible = false">取 消</el-button>
-                                              <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
-                                        </span>
+                                                                  <el-button @click="centerDialogVisible = false">取 消</el-button>
+                                                                  <el-button type="primary" @click="handleLogin()">确 定</el-button>
+                                                            </span>
                         </el-dialog>
+                    </el-menu-item>
+                    <el-menu-item v-if="!isLogin">
+                        <el-button type="text" @click="outLogin">注销</el-button>
                     </el-menu-item>
                 </el-menu>
             </el-col>
@@ -48,6 +51,7 @@
 </template>
 
 <script>
+    import $ from 'jquery'
     export default {
         data() {
             return {
@@ -59,7 +63,8 @@
                     userName: 'admin',
                     passWord: ''
     
-                }
+                },
+                account: ''
             };
     
     
@@ -67,6 +72,85 @@
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
+            },
+            outLogin() {
+                var self = this;
+                $.ajax({
+                    url: 'http://localhost:9090/user/outLogin',
+                    type: 'post',
+                    data: this.UserParam,
+                    dataType: "text",
+                    async: false,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
+                    success: function(data) {
+                        data = JSON.parse(data);
+    
+                    },
+                    error: function(data) {
+                        //TODO 失败
+                        console.log("error", data)
+                    }
+                })
+    
+    
+                console.log("1234")
+                self.centerDialogVisible = false
+                self.isLogin = true
+                return this.$message.warning('注销成功', {
+                    data: this.data
+                })
+    
+    
+    
+    
+            },
+            handleLogin() {
+                var self = this;
+                var result = 'true';
+                console.log("wode", self.UserParam.passWord);
+                if (!self.UserParam.userName || !self.UserParam.passWord) {
+                    return this.$message.warning('用户名和密码不能为空', {
+                        data: this.data
+                    })
+                }
+                $.ajax({
+                    url: 'http://localhost:9090/user/login',
+                    type: 'post',
+                    data: this.UserParam,
+                    dataType: "text",
+                    async: false,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
+                    success: function(data) {
+                        data = JSON.parse(data);
+                        self.account = data;
+                        console.log("abcd", this.account.success)
+                    },
+                    error: function(data) {
+                        //TODO 失败
+                        console.log("error", data)
+                    }
+                })
+    
+                if (this.account.success === true) {
+                    console.log("1234")
+                    self.centerDialogVisible = false
+                    self.isLogin = false
+                    return this.$message.warning('登陆成功', {
+                        data: this.data
+                    })
+    
+    
+                }
+                return this.$message.warning(this.account.retMsg, {
+                    data: this.data
+                })
+    
             }
         }
     }
