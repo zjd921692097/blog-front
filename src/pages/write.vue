@@ -7,9 +7,9 @@
     
         </div>
     
-        <div class="markdown-editor">
+        <div class="markdown-editor" style="width:900px">
     
-            <mavon-editor v-model="value" style="min-height:850px " />
+            <mavon-editor v-model="value" :ishljs = "true" style="min-height:850px " />
     
         </div>
     

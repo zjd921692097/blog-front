@@ -14,8 +14,9 @@ export default new Router({
       component: Home,
       children: [
         {
-          path: '/read',
-          component: r => require.ensure([], () => r(require('@/pages/read')), 'read')
+          path: '/viewBlog',
+          name:"viewBlog",
+          component: r => require.ensure([], () => r(require('@/pages/viewBlog')), 'viewBlog')
         },
         {
           path: '/',
@@ -25,8 +26,14 @@ export default new Router({
           path: '/write',
           component: r => require.ensure([], () => r(require('@/pages/write')), 'write')
         },
+        {
+          path: '/diary',
+          component: r => require.ensure([], () => r(require('@/pages/diary')), 'diary')
+        },
+
       ]
     },
-    {path: '/blogTag', name: 'blogTag', component: page('blogTag')}
+    {path: '/blogTag', name: 'blogTag', component: page('blogTag')},
+//    {path: '/read', name: 'read', component: page('read')}
   ]
 })

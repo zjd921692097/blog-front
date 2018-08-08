@@ -12,7 +12,7 @@
                     <el-menu-item index="/">我的文章</el-menu-item>
                     <el-menu-item index="/read">我的阅读</el-menu-item>
                     <el-menu-item index="3">标签</el-menu-item>
-                    <el-menu-item index="4">日记</el-menu-item>
+                    <el-menu-item index="/diary">日记</el-menu-item>
                     <el-col :span="8" :offset="8">
                         <el-menu-item index="/write"><i class="el-icon-edit"></i>写博客</el-menu-item>
                     </el-col>
