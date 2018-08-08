@@ -1,6 +1,6 @@
 <template>
     <div class="markdown-editor">    
-        <mavon-editor :editable=false :ishljs="true" :subfield=false :toolbarsFlag=false defaultOpen="preview" v-model="value" style="min-height:850px " />   
+        <mavon-editor  :editable=false :ishljs=true :subfield=false :toolbarsFlag=false defaultOpen="preview" v-model="value" style="min-height:850px " />   
     </div>
 </template>
 <script>

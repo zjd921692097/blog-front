@@ -30,6 +30,10 @@ export default new Router({
           path: '/diary',
           component: r => require.ensure([], () => r(require('@/pages/diary')), 'diary')
         },
+        {
+          path: '/read',
+          component: r => require.ensure([], () => r(require('@/pages/read')), 'read')
+        },
 
       ]
     },

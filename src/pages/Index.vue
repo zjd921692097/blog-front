@@ -23,7 +23,7 @@
       </el-main>
       <el-aside width="28%">
         <el-row>
-          <el-col :span="30" :key="o" :offset="index > 0 ? 2 : 0">
+          <el-col  :key="o" :offset="index > 0 ? 2 : 0">
             <el-card :body-style="{ padding: '0px' }" class="side-cars">
               <div style="padding: 14px;">
                 <a href="https://github.com/zjd921692097"><img src="@/assets/img/timg.jpg" class="image"></a>
@@ -31,7 +31,9 @@
   
                 <span><pre>     小迪  |   Java开发工程师
                                        
-              极简主义者</pre></span>
+              
+    你平时的坚持，藏着你未来的样子
+  所以，不如给自己一个小目标：3年BAT</pre></span>
   
               </div>
             </el-card>
