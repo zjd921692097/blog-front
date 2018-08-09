@@ -13,8 +13,9 @@
                 </div>
                 </br>
                 <div class="my-time">
-                  <span>开始阅读时间:{{ todo.startDate}}</span>
+                  <span>开始阅读时间:{{ todo.startDateString}}</span>
                   <span style="margin-left:24px;">作者:{{ todo.author}}</span>
+                  <span style="margin-left:24px;">总页数:{{ todo.pageNum}}</span>
                   <el-progress :percentage="todo.progress" :stroke-width=4></el-progress>
                 </div>
               </el-card>
@@ -29,9 +30,14 @@
               <div style="padding: 14px;">
                 <a href="https://github.com/zjd921692097"><img src="@/assets/img/timg.jpg" class="image"></a>
                 </br>
-                <span><pre>     小迪  |   Java开发工程师
-                                                             
-                          极简主义者</pre></span>
+                 <span style="margin-left:24px;"><pre>近三日阅读:    {{statistic.countThreeDay}}     页</pre></span>
+                 
+                  <span style="margin-left:24px;"><pre>近一周阅读:    {{statistic.countWeek}}     页</pre></span>
+                  
+                  <span style="margin-left:24px;"><pre>近一月阅读:    {{statistic.countMouth}}     页</pre></span>
+                  
+                  <span style="margin-left:24px;"><pre>近一年阅读:    {{statistic.countYer}}     页</pre></span>
+                  <span style="margin-left:24px;"><pre>最近正在读的书:    {{statistic.countYer}}     页</pre></span>
               </div>
             </el-card>
             <el-card :body-style="{ padding: '0px' }" class="side-cars">
@@ -56,30 +62,29 @@
                     </el-form-item>
                   </el-form>
                   <span slot="footer" class="dialog-footer">
-                                    <el-button @click="centerDialogVisible = false">取 消</el-button>
-                                   <el-button type="primary" @click="addBook()">确 定</el-button>
-                                  </span>
+                                          <el-button @click="centerDialogVisible = false">取 消</el-button>
+                                         <el-button type="primary" @click="addBook()">确 定</el-button>
+                                        </span>
                 </el-dialog>
                 <el-button @click="centerDialogVisible2 = true">记录阅读</el-button>
                 <el-dialog title="add book" :visible.sync="centerDialogVisible2" width="30%" center>
                   <el-form>
                     <el-form-item label="书名" :label-width="formLabelWidth" style="margin-left:20%;">
-                      <el-select v-model="editForm.bookName" placeholder="请选择">
+                      <el-select v-model="editForm.id" placeholder="请选择">
                         <el-option v-for="item in tableData" :key="item.id" :label="item.bookName" :value="item.id">
                         </el-option>
                       </el-select>
                     </el-form-item>
-                  
                     <el-form-item label="阅读页数" :label-width="formLabelWidth" style="margin-left:14%;">
                       <el-col :span="12">
-                        <el-input v-model="AddBookParam.pageNum"></el-input>
+                        <el-input v-model="AddReadLogParam.readNum"></el-input>
                       </el-col>
                     </el-form-item>
                   </el-form>
                   <span slot="footer" class="dialog-footer">
-                                    <el-button @click="centerDialogVisible2 = false">取 消</el-button>
-                                   <el-button type="primary" @click="addReadLog()">确 定</el-button>
-                                  </span>
+                                          <el-button @click="centerDialogVisible2 = false">取 消</el-button>
+                                         <el-button type="primary" @click="addReadLog()">确 定</el-button>
+                                        </span>
                 </el-dialog>
               </div>
             </el-card>
@@ -98,6 +103,7 @@
         centerDialogVisible: false,
         centerDialogVisible2: false,
         items: '',
+        statistic:'',
         tableData: [],
         tableType: [],
         currentDate: new Date(),
@@ -110,14 +116,37 @@
           id: null,
           bookName: null
         },
+        AddReadLogParam: {
+          bookId: '',
+          readNum: '',
+        }
+
       };
     },
     methods: {
-      handleEdit: function(index, row) {
-        this.editFormVisible = true;
-        //this.editForm = Object.assign({}, row);  
-        this.editForm.id = row.id;
-        this.editForm.bookName = row.bookName;
+      getbooks(){
+        var self=this;
+         $.ajax({
+                url: 'http://localhost:9090/book/getBooks',
+                type: 'post',
+                dataType: "text",
+                async: false,
+                xhrFields: {
+                  withCredentials: true
+                },
+                crossDomain: true,
+                success: function(data) {
+                  data = JSON.parse(data)
+                  console.log(data)
+                  self.tableData = data.data
+                  console.log("abc", self.tableData)
+                },
+                error: function(data) {
+                  //TODO 失败
+                  console.log("error", data)
+                }
+              })
+
       },
       addBook() {
         var self = this;
@@ -141,23 +170,68 @@
             data = JSON.parse(data)
             console.log(data)
             result = data;
+            console.log(111)
+            if (result.success === false) {
+              return self.$message.warning('please login', {
+                data: self.data
+              })
+            }
+            if (result.success === true) {
+              self.centerDialogVisible = false;
+              self.$message.warning('添加成功', {
+                data: self.data
+              })
+             
+            }
           },
           error: function(data) {
             //TODO 失败
             console.log("error", data)
           }
         })
-        if (result.success === false) {
-          return this.$message.warning('please login', {
+        self.getbooks();
+      },
+      addReadLog() {
+        var self = this;
+        var result = null;
+        self.AddReadLogParam.bookId = self.editForm.id;
+        console.log("aaaa")
+        if (!self.AddReadLogParam.bookId || !self.AddReadLogParam.readNum) {
+          return this.$message.warning('书名和阅读页数不能为空', {
             data: this.data
           })
         }
-        if (result.success === true) {
-          self.centerDialogVisible = false;
-          return this.$message.warning('添加成功', {
-            data: this.data
-          })
-        }
+        $.ajax({
+          url: 'http://localhost:9090/book/addReadLog',
+          type: 'post',
+          data: self.AddReadLogParam,
+          dataType: "text",
+          async: false,
+          xhrFields: {
+            withCredentials: true
+          },
+          crossDomain: true,
+          success: function(data) {
+            data = JSON.parse(data)
+            console.log(data)
+            result = data;
+            if (result.success === false) {
+              return self.$message.warning(result.retMsg, {
+                data: self.data
+              })
+            }
+            if (result.success === true) {
+              self.centerDialogVisible2 = false;
+              return self.$message.warning('添加成功', {
+                data: self.data
+              })
+            }
+          },
+          error: function(data) {
+            //TODO 失败
+            console.log("error", data)
+          }
+        })
       },
       viewArticle(todo) {
         console.log("this", todo)
@@ -172,38 +246,25 @@
     },
     created: function() {
       var self = this;
-      $.ajax({
-        url: 'http://localhost:9090/book/getBooks',
-        type: 'post',
-        dataType: "text",
-        async: false,
-        xhrFields: {
-          withCredentials: true
-        },
-        crossDomain: true,
-        success: function(data) {
-          data = JSON.parse(data)
-          console.log(data)
-          self.tableData = data.data
-          console.log("abc", self.tableData)
-        },
-        error: function(data) {
-          //TODO 失败
-          console.log("error", data)
-        }
-      })
-      if (!self.tableData.bookName)
-        for (var i = 0; i < self.tableData.length; i++) {
-          console.log(self.tableData[i].startDate);
-          var date = new Date(self.tableData[i].startDate); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-          var Y = date.getFullYear() + '-';
-          var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-          var D = date.getDate() + ' ';
-          var h = date.getHours() + ':';
-          var m = date.getMinutes() + ':';
-          var s = date.getSeconds();
-          self.tableData[i].startDate = Y + M + D;
-        }
+      self.getbooks();
+       $.ajax({
+          url: 'http://localhost:9090/book/getReadStatistics',
+          type: 'post',
+          dataType: "text",
+          xhrFields: {
+            withCredentials: true
+          },
+          crossDomain: true,
+          success: function(data) {
+            data = JSON.parse(data)
+            console.log(data)
+            self.statistic = data.data;
+          },
+          error: function(data) {
+            //TODO 失败
+            console.log("error", data)
+          }
+        })
     }
   }
 </script>
