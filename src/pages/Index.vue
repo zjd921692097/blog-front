@@ -33,14 +33,15 @@
                                        
               
     你平时的坚持，藏着你未来的样子
-  所以，不如给自己一个小目标：3年BAT</pre></span>
+
+  </pre></span>
   
               </div>
             </el-card>
             <el-card :body-style="{ padding: '0px' }" class="side-cars">
               <div style="padding: 14px;">
                 <ul style="list-style-type:none">
-                  <li v-for="ArticleType in tableType" class="my-li" @click="getArticleByChooseType(ArticleType)">
+                  <li v-for="(ArticleType,index) in tableType" class="my-li" :class="{'my-li--active': index === active}" @click="getArticleByChooseType(ArticleType, index)">
                     <el-col>
                       <a>
                         <span style="text-align:center;"><pre>{{ ArticleType.typeName}}</pre></span>
@@ -72,6 +73,7 @@
           typeId: "",
   
         },
+        active: 0,
       };
   
   
@@ -89,7 +91,8 @@
           }
         })
       },
-      getArticleByChooseType(ArticleType) {
+      getArticleByChooseType(ArticleType, index) {
+        this.active = index;
         var self = this;
         self.GetArticleParam.typeId = ArticleType.id;
         console.log("typeid", self.GetArticleParam.typeId)
@@ -218,6 +221,9 @@
     font-size: 120%;
     font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     font-weight: 600
+  }
+  .my-li--active{
+    color: blue;
   }
   
   .my-time {

@@ -37,7 +37,7 @@
                   <span style="margin-left:24px;"><pre>近一月阅读:    {{statistic.countMouth}}     页</pre></span>
                   
                   <span style="margin-left:24px;"><pre>近一年阅读:    {{statistic.countYer}}     页</pre></span>
-                  <span style="margin-left:24px;"><pre>最近正在读的书:    {{statistic.countYer}}     页</pre></span>
+                  <span style="margin-left:24px;"><pre>正在读的书:《{{statistic.bookName}}》</pre></span>
               </div>
             </el-card>
             <el-card :body-style="{ padding: '0px' }" class="side-cars">
@@ -232,6 +232,7 @@
             console.log("error", data)
           }
         })
+        self.getbooks();
       },
       viewArticle(todo) {
         console.log("this", todo)
