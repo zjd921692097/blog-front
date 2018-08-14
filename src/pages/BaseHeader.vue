@@ -76,7 +76,7 @@
             outLogin() {
                 var self = this;
                 $.ajax({
-                    url: 'http://localhost:9090/user/outLogin',
+                    url: 'http://47.106.219.141:9090/user/outLogin',
                     type: 'post',
                     data: this.UserParam,
                     dataType: "text",
@@ -117,7 +117,7 @@
                     })
                 }
                 $.ajax({
-                    url: 'http://localhost:9090/user/login',
+                    url: 'http://47.106.219.141:9090/user/login',
                     type: 'post',
                     data: this.UserParam,
                     dataType: "text",

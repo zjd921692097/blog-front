@@ -127,7 +127,7 @@
       getbooks(){
         var self=this;
          $.ajax({
-                url: 'http://localhost:9090/book/getBooks',
+                url: 'http://47.106.219.141:9090/book/getBooks',
                 type: 'post',
                 dataType: "text",
                 async: false,
@@ -157,7 +157,7 @@
           })
         }
         $.ajax({
-          url: 'http://localhost:9090/book/addBook',
+          url: 'http://47.106.219.141:9090/book/addBook',
           type: 'post',
           data: self.AddBookParam,
           dataType: "text",
@@ -202,7 +202,7 @@
           })
         }
         $.ajax({
-          url: 'http://localhost:9090/book/addReadLog',
+          url: 'http://47.106.219.141:9090/book/addReadLog',
           type: 'post',
           data: self.AddReadLogParam,
           dataType: "text",
@@ -249,7 +249,7 @@
       var self = this;
       self.getbooks();
        $.ajax({
-          url: 'http://localhost:9090/book/getReadStatistics',
+          url: 'http://47.106.219.141:9090/book/getReadStatistics',
           type: 'post',
           dataType: "text",
           xhrFields: {

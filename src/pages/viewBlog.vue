@@ -1,5 +1,5 @@
 <template>
-    <div class="markdown-editor">    
+    <div class="markdown-editor2">    
         <mavon-editor  :editable=false :ishljs=true :subfield=false :toolbarsFlag=false defaultOpen="preview" v-model="value" style="min-height:850px;width:900px " />   
     </div>
 </template>
@@ -20,7 +20,7 @@ export default {
 }
 </script>
 <style>
-.markdown-editor {
+.markdown-editor2 {
     margin-left: 20%;
     margin-right: 20%;
     border-style: none;

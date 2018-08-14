@@ -7,9 +7,9 @@ const page = name => () => import('@/pages/' + name)
 
 export default new Router({
   mode: 'history',
-
+  base: '/dist',
   routes: [
-    {
+    {    
       path: '',
       name: 'Home',
       component: Home,
@@ -19,6 +19,7 @@ export default new Router({
           name:"viewBlog",
           component: r => require.ensure([], () => r(require('@/pages/viewBlog')), 'viewBlog')
         },
+   
         {
           path: '/',
           component: r => require.ensure([], () => r(require('@/pages/Index')), 'index')

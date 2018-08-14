@@ -8,7 +8,7 @@
             <mavon-editor ref="md" @imgAdd="$imgAdd" @imgDel="$imgDel" v-model="value" :ishljs="true" style="min-height:850px " />
         </div>
         <div>
-            <el-button class="my-button" @click="centerDialogVisible = true">提交</el-button>
+            <el-button id="my-button2" @click="centerDialogVisible = true">提交</el-button>
             <el-dialog title="提交博客" :visible.sync="centerDialogVisible" width="30%" center>
                 <el-form>
                     <el-form-item label="类型" :label-width="formLabelWidth" style="margin-left:20%;">
@@ -56,7 +56,7 @@
                 self.writeParam.title=self.input;
                 self.writeParam.typeId=self.editForm.id;
                 $.ajax({
-                    url: 'http://localhost:9090/article/wirteArticle',
+                    url: 'http://47.106.219.141:9090/article/wirteArticle',
                     type: 'post',
                     data: self.writeParam,
                     dataType: "text",
@@ -96,7 +96,7 @@
                 formdata.append('file', $file);
                 
                 axios({
-                    url: 'http://localhost:9090/file/uploadFile',
+                    url: 'http://47.106.219.141:9090/file/uploadFile',
                     method: 'post',
                     data: formdata,
                     headers: {
@@ -111,7 +111,7 @@
                      */
                     
                    // $vm.$img2Url(pos, 'file:///'+url.data.filePath);
-                    this.$refs.md.$img2Url(pos,'file:\\\\C:\\Users\\Administrator\\Desktop\\connect_rest.png')
+                    this.$refs.md.$img2Url(pos,url.data.data.filePath)
                 })
             }
         },
@@ -119,7 +119,7 @@
             console.log(111);
             var self = this;
             $.ajax({
-                url: 'http://localhost:9090/article/getArticleType',
+                url: 'http://47.106.219.141:9090/article/getArticleType',
                 type: 'post',
                 dataType: "text",
                 xhrFields: {
@@ -150,7 +150,7 @@
         margin-top: 3%;
         z-index: 10;
     }
-    .my-button {
+    #my-button2 {
         margin-top: 3%;
         margin-left: 92.5%;
     }

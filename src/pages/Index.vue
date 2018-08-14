@@ -97,7 +97,7 @@
         self.GetArticleParam.typeId = ArticleType.id;
         console.log("typeid", self.GetArticleParam.typeId)
         $.ajax({
-          url: 'http://localhost:9090/article/getArticleByType',
+          url: 'http://47.106.219.141:9090/article/getArticleByType',
           type: 'post',
           data: self.GetArticleParam,
           dataType: "text",
@@ -136,7 +136,7 @@
   
       var self = this;
       $.ajax({
-        url: 'http://localhost:9090/article/getArticleType',
+        url: 'http://47.106.219.141:9090/article/getArticleType',
         type: 'post',
         dataType: "text",
   
@@ -155,7 +155,7 @@
         }
       })
       $.ajax({
-        url: 'http://localhost:9090/article/getArticleByType',
+        url: 'http://47.106.219.141:9090/article/getArticleByType',
         type: 'post',
         dataType: "text",
         async: false,

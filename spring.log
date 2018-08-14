@@ -1,0 +1,46 @@
+2018-08-13 16:20:39.249  INFO 169608 --- [main] com.blog.applocation.Application         : Starting Application on VR60MTJZ6LXV7X3 with PID 169608 (C:\Users\Administrator\Desktop\blog\target\classes started by Administrator in C:\Users\Administrator\Desktop\blog)
+2018-08-13 16:20:39.253  INFO 169608 --- [main] com.blog.applocation.Application         : No active profile set, falling back to default profiles: default
+2018-08-13 16:20:40.165  WARN 169608 --- [main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'articleController': Failed to introspect bean class [com.blog.controller.ArticleController] for lookup method metadata: could not find class that it depends on; nested exception is java.lang.NoClassDefFoundError: javax/servlet/http/HttpServletRequest
+2018-08-13 16:20:40.177 ERROR 169608 --- [main] o.s.boot.SpringApplication               : Application startup failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'articleController': Failed to introspect bean class [com.blog.controller.ArticleController] for lookup method metadata: could not find class that it depends on; nested exception is java.lang.NoClassDefFoundError: javax/servlet/http/HttpServletRequest
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:269) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1118) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1091) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.8.RELEASE.jar:1.5.8.RELEASE]
+	at com.blog.applocation.Application.main(Application.java:30) [classes/:na]
+Caused by: java.lang.NoClassDefFoundError: javax/servlet/http/HttpServletRequest
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2701) ~[na:1.8.0_171]
+	at java.lang.Class.getDeclaredMethods(Class.java:1975) ~[na:1.8.0_171]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:613) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:524) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:510) ~[spring-core-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:247) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
+	... 17 common frames omitted
+Caused by: java.lang.ClassNotFoundException: javax.servlet.http.HttpServletRequest
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[na:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[na:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349) ~[na:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[na:1.8.0_171]
+	... 24 common frames omitted
+
+2018-08-13 16:21:02.626  INFO 162908 --- [main] com.blog.applocation.Application         : Starting Application on VR60MTJZ6LXV7X3 with PID 162908 (C:\Users\Administrator\Desktop\blog\target\classes started by Administrator in C:\Users\Administrator\Desktop\blog)
+2018-08-13 16:21:02.628  INFO 162908 --- [main] com.blog.applocation.Application         : No active profile set, falling back to default profiles: default
+2018-08-13 16:21:04.184  INFO 162908 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-08-13 16:21:04.187  INFO 162908 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2018-08-13 16:21:04.294  INFO 162908 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-08-13 16:21:05.405  INFO 162908 --- [main] com.blog.applocation.Application         : Started Application in 3.012 seconds (JVM running for 3.53)
