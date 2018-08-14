@@ -220,7 +220,7 @@
   .my-title {
     font-size: 120%;
     font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    font-weight: 600
+    font-weight: 550
   }
   .my-li--active{
     color: blue;

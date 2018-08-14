@@ -10,8 +10,7 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run e2e",
     "lint": "eslint --ext .js,.vue src test/e2e/specs",
-    "build": "node build/build.js",
-    "analyz": "set NODE_ENV=production npm_config_report=true npm run build"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "element-ui": "^2.4.5",
@@ -19,8 +18,7 @@
     "marked": "^0.4.0",
     "mavon-editor": "^2.6.15",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "yarn": "^1.9.4"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

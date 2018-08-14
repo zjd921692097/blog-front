@@ -2,7 +2,7 @@
     <div>
         <div class="title-input">
             <el-input v-model="input" placeholder="请输入标题"></el-input>
-            <img src="http:G:/file/2018-08-10//office_3.jpg"/>
+            
         </div>
         <div class="markdown-editor" style="width:900px">
             <mavon-editor ref="md" @imgAdd="$imgAdd" @imgDel="$imgDel" v-model="value" :ishljs="true" style="min-height:850px " />
@@ -34,7 +34,7 @@
             return {
                 centerDialogVisible: false,
                 form: {},
-                value: "<h1>aaa</h1> ",
+                value: "",
                 input:'',
                 tableType: [],
                 editForm: {
