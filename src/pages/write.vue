@@ -56,7 +56,7 @@
                 self.writeParam.title=self.input;
                 self.writeParam.typeId=self.editForm.id;
                 $.ajax({
-                    url: 'http://47.106.219.141:9090/article/wirteArticle',
+                    url: 'http://localhost:18083/blog/article/wirteArticle',
                     type: 'post',
                     data: self.writeParam,
                     dataType: "text",
@@ -96,7 +96,7 @@
                 formdata.append('file', $file);
                 
                 axios({
-                    url: 'http://47.106.219.141:9090/file/uploadFile',
+                    url: 'http://localhost:18083/blog/file/uploadFile',
                     method: 'post',
                     data: formdata,
                     headers: {
@@ -119,7 +119,7 @@
             console.log(111);
             var self = this;
             $.ajax({
-                url: 'http://47.106.219.141:9090/article/getArticleType',
+                url: 'http://localhost:18083/blog/article/getArticleType',
                 type: 'post',
                 dataType: "text",
                 xhrFields: {

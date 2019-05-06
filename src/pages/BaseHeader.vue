@@ -4,17 +4,19 @@
     
             <el-col :span="4" class="me-header-left">
                 <router-link to="/" class="me-title">
-                    <img src="@/assets/img/logo.png" />
+                    <img src="@/assets/img/flower.png" />
                 </router-link>
             </el-col>
             <el-col :span="16">
                 <el-menu :default-active="activeIndex" menu-trigger="click" router=true class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                    <el-menu-item index="/">我的文章</el-menu-item>
-                    <el-menu-item index="/read">我的阅读</el-menu-item>                  
-                    <el-menu-item index="/diary">日记</el-menu-item>
+                     <el-menu-item index="/">论坛</el-menu-item>
+                    <el-menu-item index="/community">代养</el-menu-item>
+                    <el-menu-item index="/read">花说</el-menu-item>      
+                    <el-menu-item index="/flower">在线养花</el-menu-item>               
+                    <!-- <el-menu-item index="/diary">日记</el-menu-item> -->
                    
-                    <el-col :span="10" :offset="6">
-                        <el-menu-item index="/write"><i class="el-icon-edit"></i>写博客</el-menu-item>
+                    <el-col :span="10" :offset="1">
+                        <el-menu-item index="/write"><i class="el-icon-edit"></i>发帖</el-menu-item>
                     </el-col>
                 </el-menu>
             </el-col>
@@ -76,7 +78,7 @@
             outLogin() {
                 var self = this;
                 $.ajax({
-                    url: 'http://47.106.219.141:9090/user/outLogin',
+                    url: 'http://localhost:18083/blog/user/outLogin',
                     type: 'post',
                     data: this.UserParam,
                     dataType: "text",
@@ -117,7 +119,7 @@
                     })
                 }
                 $.ajax({
-                    url: 'http://47.106.219.141:9090/user/login',
+                    url: 'http://localhost:18083/blog/user/login',
                     type: 'post',
                     data: this.UserParam,
                     dataType: "text",

@@ -1,8 +1,11 @@
 import Vue from 'vue'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 import Router from 'vue-router'
 import Home from '@/Home'
-Vue.use(Router)
 
+Vue.use(Router)
+Vue.use(VueAwesomeSwiper, /*{ default global options}*/)
 const page = name => () => import('@/pages/' + name)
 
 export default new Router({
@@ -19,10 +22,9 @@ export default new Router({
           name:"viewBlog",
           component: r => require.ensure([], () => r(require('@/pages/viewBlog')), 'viewBlog')
         },
-   
         {
           path: '/',
-          component: r => require.ensure([], () => r(require('@/pages/Index')), 'index')
+          component: r => require.ensure([], () => r(require('@/pages/index')), 'index')
         },
         {
           path: '/write',
@@ -35,6 +37,14 @@ export default new Router({
         {
           path: '/read',
           component: r => require.ensure([], () => r(require('@/pages/read')), 'read')
+        },
+        {
+          path: '/flower',
+          component: r => require.ensure([], () => r(require('@/pages/flower')), 'flower')
+        },
+        {
+          path: '/community',
+          component: r => require.ensure([], () => r(require('@/pages/community')), 'read')
         },
 
       ]

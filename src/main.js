@@ -7,8 +7,10 @@ import router from './router'
 
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import VueAreaLinkage from 'vue-area-linkage'
+import 'vue-area-linkage/dist/index.css'
+Vue.use(VueAreaLinkage) 
 Vue.config.productionTip = false
-
 
 Vue.use(mavonEditor)
 /* eslint-disable no-new */

@@ -28,7 +28,7 @@
           <el-col :key="o" :offset="index > 0 ? 2 : 0">
             <el-card :body-style="{ padding: '0px' }" class="side-cars">
               <div style="padding: 14px;">
-                <a href="https://github.com/zjd921692097"><img src="@/assets/img/timg.jpg" class="image"></a>
+                <a href="https://github.com/zjd921692097"><img src="@/assets/img/f1.jpg" class="image"></a>
                 </br>
                  <span style="margin-left:24px;"><pre>近三日阅读:    {{statistic.countThreeDay}}     页</pre></span>
                  
@@ -119,7 +119,7 @@
         AddReadLogParam: {
           bookId: '',
           readNum: '',
-        }
+        },
 
       };
     },
@@ -127,7 +127,7 @@
       getbooks(){
         var self=this;
          $.ajax({
-                url: 'http://47.106.219.141:9090/book/getBooks',
+                url: 'http://localhost:18083/blog/book/getBooks',
                 type: 'post',
                 dataType: "text",
                 async: false,
@@ -157,7 +157,7 @@
           })
         }
         $.ajax({
-          url: 'http://47.106.219.141:9090/book/addBook',
+          url: 'http://localhost:18083/blog/book/addBook',
           type: 'post',
           data: self.AddBookParam,
           dataType: "text",
@@ -202,7 +202,7 @@
           })
         }
         $.ajax({
-          url: 'http://47.106.219.141:9090/book/addReadLog',
+          url: 'http://localhost:18083/blog/book/addReadLog',
           type: 'post',
           data: self.AddReadLogParam,
           dataType: "text",
@@ -249,7 +249,7 @@
       var self = this;
       self.getbooks();
        $.ajax({
-          url: 'http://47.106.219.141:9090/book/getReadStatistics',
+          url: 'http://localhost:18083/blog/book/getReadStatistics',
           type: 'post',
           dataType: "text",
           xhrFields: {

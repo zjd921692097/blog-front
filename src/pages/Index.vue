@@ -26,13 +26,10 @@
           <el-col  :key="o" :offset="index > 0 ? 2 : 0">
             <el-card :body-style="{ padding: '0px' }" class="side-cars">
               <div style="padding: 14px;">
-                <a href="https://github.com/zjd921692097"><img src="@/assets/img/timg.jpg" class="image"></a>
+                <a href="https://github.com/zjd921692097"><img src="@/assets/img/f1.jpg" class="image"></a>
                 </br>
   
-                <span><pre>     小迪  |   Java开发工程师
-                                       
-              
-    你平时的坚持，藏着你未来的样子
+                <span><pre>     花卉养成交流 | 我们是认真的
 
   </pre></span>
   
@@ -97,7 +94,7 @@
         self.GetArticleParam.typeId = ArticleType.id;
         console.log("typeid", self.GetArticleParam.typeId)
         $.ajax({
-          url: 'http://47.106.219.141:9090/article/getArticleByType',
+          url: 'http://localhost:18083/blog/article/getArticleByType',
           type: 'post',
           data: self.GetArticleParam,
           dataType: "text",
@@ -136,7 +133,7 @@
   
       var self = this;
       $.ajax({
-        url: 'http://47.106.219.141:9090/article/getArticleType',
+        url: 'http://localhost:18083/blog/article/getArticleType',
         type: 'post',
         dataType: "text",
   
@@ -155,7 +152,7 @@
         }
       })
       $.ajax({
-        url: 'http://47.106.219.141:9090/article/getArticleByType',
+        url: 'http://localhost:18083/blog/article/getArticleByType',
         type: 'post',
         dataType: "text",
         async: false,
