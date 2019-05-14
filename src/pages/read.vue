@@ -127,7 +127,7 @@
       getbooks(){
         var self=this;
          $.ajax({
-                url: 'http://localhost:18083/blog/book/getBooks',
+                url: 'http://10.10.102.60:18083/blog/book/getBooks',
                 type: 'post',
                 dataType: "text",
                 async: false,
@@ -157,7 +157,7 @@
           })
         }
         $.ajax({
-          url: 'http://localhost:18083/blog/book/addBook',
+          url: 'http://10.10.102.60:18083/blog/book/addBook',
           type: 'post',
           data: self.AddBookParam,
           dataType: "text",
@@ -202,7 +202,7 @@
           })
         }
         $.ajax({
-          url: 'http://localhost:18083/blog/book/addReadLog',
+          url: 'http://10.10.102.60:18083/blog/book/addReadLog',
           type: 'post',
           data: self.AddReadLogParam,
           dataType: "text",
@@ -249,7 +249,7 @@
       var self = this;
       self.getbooks();
        $.ajax({
-          url: 'http://localhost:18083/blog/book/getReadStatistics',
+          url: 'http://10.10.102.60:18083/blog/book/getReadStatistics',
           type: 'post',
           dataType: "text",
           xhrFields: {

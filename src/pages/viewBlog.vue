@@ -58,7 +58,7 @@ export default {
       var self = this;
       console.log("wodaozhelile");
       $.ajax({
-        url: "http://localhost:18083/blog/comment/add",
+        url: "http://10.10.102.60:18083/blog/comment/add",
         type: "post",
         dataType: "text",
         data: self.Comment,
@@ -101,7 +101,7 @@ export default {
     console.log("articleId", this.Comment.atrictleId);
     var self = this;
     $.ajax({
-      url: "http://localhost:18083/blog/comment/getComments",
+      url: "http://10.10.102.60:18083/blog/comment/getComments",
       type: "post",
       dataType: "text",
       data: self.Comment,

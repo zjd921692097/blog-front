@@ -123,7 +123,7 @@
       addOnlineFlower(){
         var self=this;
          $.ajax({
-                url: 'http://localhost:18083/foster/addOnlineFlower',
+                url: 'http://10.10.102.60:18083/foster/addOnlineFlower',
                 type: 'post',
                 dataType: "text",
                 data:self.OnlineFlowerParam,
@@ -160,7 +160,7 @@
         var self=this;
         self.onlineflower.id=self.onlineflowerId;
          $.ajax({
-                url: 'http://localhost:18083/foster/getFlowerPlan',
+                url: 'http://10.10.102.60:18083/foster/getFlowerPlan',
                 type: 'post',
                 dataType: "text",
                 data:self.onlineflower,
@@ -193,7 +193,7 @@
       var self = this;
       console.log("woshizhu")
       $.ajax({
-      url: "http://localhost:18083/foster/getFlowers",
+      url: "http://10.10.102.60:18083/foster/getFlowers",
       type: "post",
       dataType: "text",
       async: false,
@@ -211,7 +211,7 @@
       }
     });
        $.ajax({
-          url: 'http://localhost:18083/foster/getOnlineFlowersByUserId',
+          url: 'http://10.10.102.60:18083/foster/getOnlineFlowersByUserId',
           type: 'post',
           dataType: "text",
           xhrFields: {
@@ -222,6 +222,7 @@
             data = JSON.parse(data)
             console.log(data)
             self.tableDataOnlineFlower = data.data;
+            console.log("tableDataOnlineFlower",self.tableDataOnlineFlower)
           },
           error: function(data) {
             //TODO 失败

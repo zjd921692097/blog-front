@@ -10,7 +10,7 @@ const page = name => () => import('@/pages/' + name)
 
 export default new Router({
   mode: 'history',
-  base: '/dist',
+  base: '/',
   routes: [
     {    
       path: '',

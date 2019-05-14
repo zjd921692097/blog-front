@@ -176,7 +176,7 @@ export default {
 
       console.log("fosterParam", self.fosterParam);
       $.ajax({
-        url: "http://localhost:18083/foster/foster",
+        url: "http://10.10.102.60:18083/foster/foster",
         type: "post",
         data: self.fosterParam,
         dataType: "text",
@@ -201,7 +201,7 @@ export default {
       var self = this;
       console.log("fosterId", self.editForm.id);
       $.ajax({
-        url: "http://localhost:18083/foster/getFosterById",
+        url: "http://10.10.102.60:18083/foster/getFosterById",
         type: "post",
         data: self.editForm,
         dataType: "text",
@@ -226,7 +226,7 @@ export default {
   created: function() {
     var self = this;
     $.ajax({
-      url: "http://localhost:18083/foster/getFlowers",
+      url: "http://10.10.102.60:18083/foster/getFlowers",
       type: "post",
       dataType: "text",
       async: false,
@@ -244,7 +244,7 @@ export default {
       }
     });
     $.ajax({
-      url: "http://localhost:18083/foster/getFosterByUserId",
+      url: "http://10.10.102.60:18083/foster/getFosterByUserId",
       type: "get",
       dataType: "text",
 
@@ -263,7 +263,7 @@ export default {
       }
     });
     $.ajax({
-      url: "http://localhost:18083/intergration/intergration/get",
+      url: "http://10.10.102.60:18083/intergration/intergration/get",
       type: "get",
       dataType: "text",
       async: false,
